@@ -9,16 +9,13 @@ import {
   Users,
   Zap,
   TrendingUp,
-  ChevronRight,
   BarChart2,
   Play,
   X,
   Volume2,
   VolumeX,
-  Star,
   Activity,
   Radio,
-  Gamepad2,
 } from "lucide-react";
 import { GiMiner, GiRevolver, GiShield, GiTwoCoins } from "react-icons/gi";
 import { FaPersonMilitaryToPerson, FaPersonWalking } from "react-icons/fa6";
@@ -32,6 +29,7 @@ import pazImg from "../assets/imgs/presidente.png";
 import mineroImg from "../assets/imgs/mineros.png";
 import ponchosImg from "../assets/imgs/poncho_rojo.png";
 import militar from "../assets/imgs/militar.png";
+import { TargetModel3d } from "../components/TargetModel3d";
 
 // ─── TIPOS ─────────────────────────────────────────────────────────────────
 interface GameState {
@@ -133,7 +131,7 @@ export function HomePage() {
   const [trailerOpen, setTrailerOpen] = useState(false);
   const [trailerSlide, setTrailerSlide] = useState(0);
   const [trailerMuted, setTrailerMuted] = useState(true);
-  
+
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const eventRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const trailerTimerRef = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -207,31 +205,38 @@ export function HomePage() {
     {
       title: "BOLIVIA // 2025",
       subtitle: "El destino de la nación pende de un hilo.",
-      quote: "El desabastecimiento asfixia las ciudades y el descontento social ruge.",
+      quote:
+        "El desabastecimiento asfixia las ciudades y el descontento social ruge.",
       image: pazImg,
-      subText: "PRESIDENTE PAZ: 'No cederemos ante el chantaje de la violencia...'"
+      subText:
+        "PRESIDENTE PAZ: 'No cederemos ante el chantaje de la violencia...'",
     },
     {
       title: "LAS SOMBRAS CONSPIRAN",
       subtitle: "Evo Morales moviliza sus facciones.",
-      quote: "Los Ponchos Rojos toman las rutas del altiplano y los mineros bloquean el país.",
+      quote:
+        "Los Ponchos Rojos toman las rutas del altiplano y los mineros bloquean el país.",
       image: evoImg,
-      subText: "EVO: 'El pueblo ha despertado. Este gobierno neoliberal tiene los días contados...'"
+      subText:
+        "EVO: 'El pueblo ha despertado. Este gobierno neoliberal tiene los días contados...'",
     },
     {
       title: "CAOS EN LAS CALLES",
       subtitle: "La delgada línea roja de la democracia.",
-      quote: "Militares y policías luchan en los puentes bloqueados. El ciudadano de a pie está harto.",
+      quote:
+        "Militares y policías luchan en los puentes bloqueados. El ciudadano de a pie está harto.",
       image: mineroImg,
-      subText: "📢 TRANSMISIÓN DE RADIO: 'Enfrentamientos en la carretera nacional...'"
+      subText:
+        "📢 TRANSMISIÓN DE RADIO: 'Enfrentamientos en la carretera nacional...'",
     },
     {
       title: "TÚ TIENES EL MANDO",
       subtitle: "Toma las decisiones difíciles.",
-      quote: "¿Buscarás el diálogo nacional o desplegarás la fuerza bruta del estado?",
+      quote:
+        "¿Buscarás el diálogo nacional o desplegarás la fuerza bruta del estado?",
       image: militar,
-      subText: "[ TERMINAL PRESIDENCIAL ACTIVA: 5 MINUTOS PARA EL COLAPSO ]"
-    }
+      subText: "[ TERMINAL PRESIDENCIAL ACTIVA: 5 MINUTOS PARA EL COLAPSO ]",
+    },
   ];
 
   useEffect(() => {
@@ -465,7 +470,8 @@ export function HomePage() {
   // SVG circular stroke properties for stability
   const ringRadius = 54;
   const ringCircumference = 2 * Math.PI * ringRadius;
-  const strokeDashoffset = ringCircumference - (gs.stability / 100) * ringCircumference;
+  const strokeDashoffset =
+    ringCircumference - (gs.stability / 100) * ringCircumference;
 
   // ── RENDER ────────────────────────────────────────────────────────────────
   return (
@@ -476,13 +482,12 @@ export function HomePage() {
       }}
       className="min-h-screen relative font-sans overflow-x-hidden"
     >
-      
       {/* ── HERO SECTION (Sunset Vibes & Premium Typography) ────────────────── */}
       <section className="relative min-h-[90vh] flex items-center justify-center pt-24 pb-16 overflow-hidden border-b border-white/5">
         {/* Neon sunset backdrop glow */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,42,133,0.15)_0%,transparent_50%),radial-gradient(circle_at_bottom,rgba(0,240,255,0.08)_0%,transparent_60%)] pointer-events-none z-0" />
         <div className="absolute inset-0 gta-grid-bg opacity-[0.35] z-0" />
-        
+
         <div className="relative max-w-6xl mx-auto px-6 text-center z-10">
           <motion.div
             initial={{ opacity: 0, y: -20 }}
@@ -491,29 +496,36 @@ export function HomePage() {
             className="inline-flex items-center gap-2 px-4 py-1.5 border border-gta-pink/30 bg-gta-pink/10 text-gta-pink text-[10px] font-display font-black tracking-[0.3em] uppercase mb-8 shadow-[0_0_15px_rgba(255,42,133,0.1)] gta-card-skew"
           >
             <span className="gta-card-skew-inner flex items-center gap-2">
-              <Radio size={12} className="animate-pulse" /> BOLIVIA // CRISIS 2024–2025
+              <Radio size={12} className="animate-pulse" /> BOLIVIA // CRISIS
+              2024–2025
             </span>
           </motion.div>
-          
+
           <motion.h1
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.1 }}
             className="font-display font-black text-6xl md:text-8xl lg:text-9xl uppercase tracking-tighter leading-none select-none"
           >
-            <span className="block text-white tracking-widest text-[0.45em] md:text-[0.45em] leading-none mb-1 font-light block opacity-70">PROYECTO UNIVERSITARIO</span>
+            <span className="block text-white tracking-widest text-[0.45em] md:text-[0.45em] leading-none mb-1 font-light block opacity-70">
+              PROYECTO UNIVERSITARIO
+            </span>
             <span className="block bg-gradient-to-r from-gta-pink via-gta-orange to-gta-yellow bg-clip-text text-transparent gta-text-glow-pink">
               CRISIS ESTADO
             </span>
           </motion.h1>
-          
+
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-base md:text-xl max-w-3xl mx-auto mb-12 mt-6 leading-relaxed font-serif italic text-slate-400"
           >
-            El Palacio Quemado está cercado. Evo Morales, las milicias altiplánicas y sectores en conflicto demandan tu renuncia inmediata. Como el Presidente Paz, debes equilibrar la represión y la paz negociada para mantener el estado de derecho durante 5 minutos históricos.
+            El Palacio Quemado está cercado. Evo Morales, las milicias
+            altiplánicas y sectores en conflicto demandan tu renuncia inmediata.
+            Como el Presidente Paz, debes equilibrar la represión y la paz
+            negociada para mantener el estado de derecho durante 5 minutos
+            históricos.
           </motion.p>
 
           <motion.div
@@ -529,7 +541,7 @@ export function HomePage() {
               <Zap size={16} />
               Asumir el mando militar
             </button>
-            
+
             <button
               onClick={() => setTrailerOpen(true)}
               className="px-10 py-5 rounded-none font-display font-black text-xs uppercase tracking-[0.2em] bg-transparent text-white border border-white/20 transition-all duration-300 hover:border-gta-pink hover:text-gta-pink hover:scale-105 cursor-pointer flex items-center gap-3 hover:shadow-[0_0_15px_rgba(255,42,133,0.15)]"
@@ -542,10 +554,26 @@ export function HomePage() {
           {/* Quick HUD details */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-16 max-w-4xl mx-auto border-t border-white/5 pt-12">
             {[
-              { label: "TIEMPO CRÍTICO", val: "300 SECS", icon: <Clock className="text-gta-pink" /> },
-              { label: "FACCIÓN OPOSITORA", val: "EVO MORALES", icon: <Skull className="text-gta-pink" /> },
-              { label: "ALINEACIONES Real-3D", val: "6 MODELOS", icon: <Activity className="text-gta-cyan" /> },
-              { label: "UBICACIÓN CLAVE", val: "LA PAZ, BOLIVIA", icon: <Shield className="text-gta-cyan" /> },
+              {
+                label: "TIEMPO CRÍTICO",
+                val: "300 SECS",
+                icon: <Clock className="text-gta-pink" />,
+              },
+              {
+                label: "FACCIÓN OPOSITORA",
+                val: "EVO MORALES",
+                icon: <Skull className="text-gta-pink" />,
+              },
+              {
+                label: "ALINEACIONES Real-3D",
+                val: "6 MODELOS",
+                icon: <Activity className="text-gta-cyan" />,
+              },
+              {
+                label: "UBICACIÓN CLAVE",
+                val: "LA PAZ, BOLIVIA",
+                icon: <Shield className="text-gta-cyan" />,
+              },
             ].map((stat, i) => (
               <div
                 key={i}
@@ -564,6 +592,15 @@ export function HomePage() {
           </div>
         </div>
       </section>
+
+      <div>
+        <TargetModel3d
+          modelPath="/models_3d/animacion1.glb"
+          animationName="Muerte"
+          height={900}
+          cameraPosition={[2, 1, 8]}
+        />
+      </div>
 
       {/* ── CINEMATIC TRAILER MODAL (SIMULATED ROCKSTAR SCREENPLAY) ────────── */}
       <AnimatePresence>
@@ -600,14 +637,21 @@ export function HomePage() {
                       exit={{ opacity: 0 }}
                       transition={{ duration: 1.2 }}
                       className="absolute inset-0 bg-cover bg-center filter grayscale contrast-125 brightness-[0.4]"
-                      style={{ backgroundImage: `url(${trailerSlides[trailerSlide].image})` }}
+                      style={{
+                        backgroundImage: `url(${trailerSlides[trailerSlide].image})`,
+                      }}
                     />
                   </AnimatePresence>
-                  
+
                   {/* Neon Color Splash Backdrop */}
-                  <div 
+                  <div
                     className="absolute inset-0 mix-blend-color-dodge opacity-25 blur-[100px]"
-                    style={{ backgroundColor: trailerSlides[trailerSlide].image === evoImg ? "#ff2a85" : "#00f0ff" }}
+                    style={{
+                      backgroundColor:
+                        trailerSlides[trailerSlide].image === evoImg
+                          ? "#ff2a85"
+                          : "#00f0ff",
+                    }}
                   />
                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_40%,rgba(0,0,0,0.8)_100%)]" />
                 </div>
@@ -621,7 +665,11 @@ export function HomePage() {
                     onClick={() => setTrailerMuted(!trailerMuted)}
                     className="p-2 border border-white/20 bg-black/50 text-white rounded-none hover:border-gta-pink transition-colors cursor-pointer"
                   >
-                    {trailerMuted ? <VolumeX size={16} /> : <Volume2 size={16} />}
+                    {trailerMuted ? (
+                      <VolumeX size={16} />
+                    ) : (
+                      <Volume2 size={16} />
+                    )}
                   </button>
                 </div>
 
@@ -648,7 +696,9 @@ export function HomePage() {
                 {/* Bottom subtitle ticker */}
                 <div className="relative z-10 border-t border-white/10 pt-4 flex flex-col md:flex-row justify-between items-center text-[10px] font-mono tracking-widest text-slate-500 uppercase">
                   <span>{trailerSlides[trailerSlide].subText}</span>
-                  <span className="text-gta-pink animate-pulse">TRANSMISIÓN EN TIEMPO REAL</span>
+                  <span className="text-gta-pink animate-pulse">
+                    TRANSMISIÓN EN TIEMPO REAL
+                  </span>
                 </div>
               </div>
 
@@ -679,10 +729,14 @@ export function HomePage() {
             ROSTER DE LA CRISIS
           </span>
           <h2 className="font-display font-black text-4xl md:text-5xl uppercase tracking-wider text-white mt-1">
-            Los <span className="bg-gradient-to-r from-gta-pink to-gta-orange bg-clip-text text-transparent">Personajes</span>
+            Los{" "}
+            <span className="bg-gradient-to-r from-gta-pink to-gta-orange bg-clip-text text-transparent">
+              Personajes
+            </span>
           </h2>
           <p className="font-serif italic text-slate-400 mt-3 max-w-lg mx-auto">
-            Modelados de alta fidelidad 3D en desarrollo. Conoce las facciones en pugna.
+            Modelados de alta fidelidad 3D en desarrollo. Conoce las facciones
+            en pugna.
           </p>
         </div>
 
@@ -705,24 +759,27 @@ export function HomePage() {
                   style={{
                     height: 280,
                     backgroundColor: "#06060c",
-                    borderBottom: "1px solid rgba(255,255,255,0.05)"
+                    borderBottom: "1px solid rgba(255,255,255,0.05)",
                   }}
                 >
                   {/* Backdrop glowing color */}
                   <div
                     className="absolute inset-0 opacity-[0.1] transition-opacity duration-300 group-hover:opacity-[0.2]"
                     style={{
-                      background: `radial-gradient(circle, ${ch.color} 0%, transparent 70%)`
+                      background: `radial-gradient(circle, ${ch.color} 0%, transparent 70%)`,
                     }}
                   />
-                  
+
                   {/* Cyber Grid Lines */}
                   <div className="absolute inset-0 gta-grid-bg opacity-[0.2]" />
 
                   {/* Dynamic diagonal side bar */}
-                  <div 
+                  <div
                     className="absolute top-0 right-0 w-24 h-full skew-x-[-15deg] translate-x-12 opacity-10 border-l"
-                    style={{ borderColor: ch.color, backgroundColor: `${ch.color}10` }}
+                    style={{
+                      borderColor: ch.color,
+                      backgroundColor: `${ch.color}10`,
+                    }}
                   />
 
                   {/* Character PNG Illustration */}
@@ -731,7 +788,10 @@ export function HomePage() {
                     alt={ch.name}
                     className="h-[80%] w-auto object-contain z-10 transition-all duration-500 group-hover:scale-105 filter drop-shadow-[0_10px_15px_rgba(0,0,0,0.8)]"
                     style={{
-                      filter: theme === "dark" ? "brightness(1) contrast(1.08)" : "none"
+                      filter:
+                        theme === "dark"
+                          ? "brightness(1) contrast(1.08)"
+                          : "none",
                     }}
                   />
 
@@ -741,9 +801,7 @@ export function HomePage() {
                   </div>
 
                   {ch.name === "Presidente Paz" && (
-                    <div
-                      className="absolute top-4 right-4 z-20 px-3 py-1 font-display font-black text-[9px] tracking-widest uppercase bg-gta-cyan text-black"
-                    >
+                    <div className="absolute top-4 right-4 z-20 px-3 py-1 font-display font-black text-[9px] tracking-widest uppercase bg-gta-cyan text-black">
                       JUGADOR // HÉROE
                     </div>
                   )}
@@ -752,7 +810,10 @@ export function HomePage() {
                 {/* Details Footer */}
                 <div className="p-6 relative">
                   <div className="flex items-center gap-3">
-                    <span className="p-2 bg-white/5 text-slate-300 border border-white/5 rounded-none" style={{ color: ch.color }}>
+                    <span
+                      className="p-2 bg-white/5 text-slate-300 border border-white/5 rounded-none"
+                      style={{ color: ch.color }}
+                    >
                       {ch.icon}
                     </span>
                     <div>
@@ -764,7 +825,7 @@ export function HomePage() {
                       </div>
                     </div>
                   </div>
-                  
+
                   <p className="mt-4 text-xs font-serif italic text-slate-400 leading-relaxed border-t border-white/5 pt-4">
                     {ch.desc}
                   </p>
@@ -784,7 +845,7 @@ export function HomePage() {
         }}
       >
         <div className="absolute inset-0 gta-grid-bg opacity-[0.2] pointer-events-none" />
-        
+
         <div className="max-w-6xl mx-auto px-6 relative z-10">
           <div className="text-center mb-16">
             <span className="font-display font-black text-xs tracking-[0.25em] text-gta-cyan uppercase">
@@ -794,30 +855,31 @@ export function HomePage() {
               Gabinete de <span className="text-gta-pink">Crisis</span>
             </h2>
             <p className="font-serif italic text-slate-400 mt-2">
-              Asume el rol en tiempo real. Mantén la estabilidad antes de que estalle la guerra civil.
+              Asume el rol en tiempo real. Mantén la estabilidad antes de que
+              estalle la guerra civil.
             </p>
           </div>
 
           {/* ── Pantalla inicio ─────────────────────────────────────── */}
           {!gs.running && !gs.over && (
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               className="text-center py-20 bg-zinc-950/70 border border-white/5 backdrop-blur-md max-w-3xl mx-auto relative overflow-hidden"
             >
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,42,133,0.06)_0%,transparent_60%)] pointer-events-none" />
-              
+
               <div
                 className="font-display font-black text-8xl md:text-[10rem] tracking-tight leading-none text-white select-none relative z-10"
                 style={{ fontFamily: "'Oswald', sans-serif" }}
               >
                 5:00
               </div>
-              
+
               <div className="text-sm font-mono tracking-[0.25em] text-slate-400 uppercase mt-4 mb-10">
                 SISTEMA OPERATIVO DE CRISIS // TIEMPO LÍMITE
               </div>
-              
+
               <button
                 onClick={startGame}
                 className="px-12 py-5 text-sm font-display font-black uppercase tracking-[0.25em] bg-gta-cyan text-black hover:scale-105 active:scale-95 transition-all duration-200 cursor-pointer shadow-lg shadow-gta-cyan/15 hover:shadow-gta-cyan/35 flex items-center gap-3 mx-auto"
@@ -836,20 +898,20 @@ export function HomePage() {
               className="text-center py-20 bg-zinc-950/70 border border-white/5 backdrop-blur-md max-w-3xl mx-auto relative overflow-hidden"
             >
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,240,255,0.05)_0%,transparent_60%)] pointer-events-none" />
-              
+
               <div
                 className="text-6xl md:text-8xl font-display font-black mb-4 uppercase tracking-wider leading-none"
                 style={{ color: gs.won ? c.accent : c.primary }}
               >
                 {gs.won ? "¡VICTORIA COMPLETA!" : "GOBIERNO DERROCADO"}
               </div>
-              
+
               <p className="text-base md:text-lg max-w-xl mx-auto mb-10 font-serif italic text-slate-300">
                 {gs.won
                   ? "El Presidente Paz sobrevivió al período crítico de 5 minutos. Las fuerzas opositoras declinan y el país retorna a la tranquilidad."
                   : "Estabilidad en 0%. Evo Morales asume el poder definitivo. La Constitución ha sido abolida."}
               </p>
-              
+
               <div className="grid grid-cols-2 gap-4 max-w-md mx-auto mb-12 border-t border-b border-white/5 py-6">
                 <div>
                   <div className="font-mono text-[10px] tracking-widest text-slate-500 uppercase">
@@ -863,12 +925,15 @@ export function HomePage() {
                   <div className="font-mono text-[10px] tracking-widest text-slate-500 uppercase">
                     ESTABILIDAD NACIONAL FINAL
                   </div>
-                  <div className="text-3xl font-display font-black text-white mt-1" style={{ color: barColor(gs.stability) }}>
+                  <div
+                    className="text-3xl font-display font-black text-white mt-1"
+                    style={{ color: barColor(gs.stability) }}
+                  >
                     {gs.stability}%
                   </div>
                 </div>
               </div>
-              
+
               <button
                 onClick={resetGame}
                 className="px-10 py-4 text-xs font-display font-black uppercase tracking-widest bg-white text-black hover:scale-105 active:scale-95 transition-all duration-200 cursor-pointer"
@@ -881,10 +946,8 @@ export function HomePage() {
           {/* ── Panel de juego (HUD Activo) ─────────────────────────── */}
           {gs.running && (
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-              
               {/* Columna izquierda: Monitores Diagnósticos */}
               <div className="space-y-5">
-                
                 {/* 1. Reloj Táctico Militar y Fase */}
                 <div
                   className="p-5 flex items-center justify-between border relative overflow-hidden"
@@ -897,21 +960,25 @@ export function HomePage() {
                   {gs.stability < 30 && (
                     <div className="absolute inset-0 bg-gta-pink/5 animate-pulse pointer-events-none z-0" />
                   )}
-                  
+
                   <div className="relative z-10 flex items-center gap-3">
                     <Clock size={24} className="text-gta-pink animate-pulse" />
                     <div className="flex flex-col">
-                      <span className="font-mono text-[9px] tracking-widest text-slate-500">TIEMPO PARA EL COLAPSO</span>
+                      <span className="font-mono text-[9px] tracking-widest text-slate-500">
+                        TIEMPO PARA EL COLAPSO
+                      </span>
                       <span
                         className={`text-3xl font-display font-black tracking-widest ${
-                          gs.stability < 30 ? "text-gta-pink animate-bounce" : "text-white"
+                          gs.stability < 30
+                            ? "text-gta-pink animate-bounce"
+                            : "text-white"
                         }`}
                       >
                         {fmtTime(gs.timeLeft)}
                       </span>
                     </div>
                   </div>
-                  
+
                   <div
                     className="text-[10px] font-mono font-black uppercase tracking-widest px-3 py-1.5 border border-white/5"
                     style={{
@@ -953,25 +1020,29 @@ export function HomePage() {
                         fill="transparent"
                         className="transition-all duration-1000 ease-out"
                         style={{
-                          filter: `drop-shadow(0 0 8px ${barColor(gs.stability)}50)`
+                          filter: `drop-shadow(0 0 8px ${barColor(gs.stability)}50)`,
                         }}
                       />
                     </svg>
-                    
+
                     {/* inner text */}
                     <div className="absolute inset-0 flex flex-col items-center justify-center">
                       <span className="font-display font-black text-3xl text-white">
                         {gs.stability}%
                       </span>
-                      <span 
+                      <span
                         className="text-[9px] font-mono tracking-widest uppercase mt-0.5 animate-pulse"
                         style={{ color: barColor(gs.stability) }}
                       >
-                        {gs.stability > 60 ? "SEGURO" : gs.stability > 30 ? "TENSIÓN" : "PELIGRO"}
+                        {gs.stability > 60
+                          ? "SEGURO"
+                          : gs.stability > 30
+                            ? "TENSIÓN"
+                            : "PELIGRO"}
                       </span>
                     </div>
                   </div>
-                  
+
                   {/* Stability Label Description */}
                   <span className="font-mono text-[9px] tracking-widest text-slate-500 uppercase mt-4">
                     {phaseLabel[gs.phase]}
@@ -987,7 +1058,7 @@ export function HomePage() {
                       icon: <GiRevolver size={14} />,
                       invert: true,
                       limit: 70,
-                      alertMsg: "MOVILIZACIÓN SINDICAL DETECTADA"
+                      alertMsg: "MOVILIZACIÓN SINDICAL DETECTADA",
                     },
                     {
                       label: "Mineros (Bloqueos de Carreteras)",
@@ -995,7 +1066,7 @@ export function HomePage() {
                       icon: <GiMiner size={14} />,
                       invert: true,
                       limit: 65,
-                      alertMsg: "BLOQUEO ECONÓMICO EN RUTA"
+                      alertMsg: "BLOQUEO ECONÓMICO EN RUTA",
                     },
                     {
                       label: "Ciudadanos Enojados (Resistencia)",
@@ -1003,7 +1074,7 @@ export function HomePage() {
                       icon: <Users size={14} />,
                       invert: true,
                       limit: 75,
-                      alertMsg: "RIESGO DE INSURRECCIÓN POPULAR"
+                      alertMsg: "RIESGO DE INSURRECCIÓN POPULAR",
                     },
                     {
                       label: "Fuerzas Policiales (Moral y Control)",
@@ -1011,10 +1082,12 @@ export function HomePage() {
                       icon: <FaPersonMilitaryToPerson size={14} />,
                       invert: false,
                       limit: 30,
-                      alertMsg: "DESERCIÓN POLICIAL INMINENTE"
+                      alertMsg: "DESERCIÓN POLICIAL INMINENTE",
                     },
                   ].map((bar) => {
-                    const isAlert = bar.invert ? bar.val > bar.limit : bar.val < bar.limit;
+                    const isAlert = bar.invert
+                      ? bar.val > bar.limit
+                      : bar.val < bar.limit;
                     return (
                       <div
                         key={bar.label}
@@ -1025,10 +1098,12 @@ export function HomePage() {
                         className={`p-4 border transition-all duration-300 ${isAlert ? "shadow-[0_0_15px_rgba(255,42,133,0.15)]" : ""}`}
                       >
                         <div className="flex items-center justify-between mb-2">
-                          <div
-                            className="flex items-center gap-2 text-[10px] font-display font-black tracking-widest uppercase text-slate-400"
-                          >
-                            <span style={{ color: isAlert ? c.primary : c.accent }}>{bar.icon}</span>
+                          <div className="flex items-center gap-2 text-[10px] font-display font-black tracking-widest uppercase text-slate-400">
+                            <span
+                              style={{ color: isAlert ? c.primary : c.accent }}
+                            >
+                              {bar.icon}
+                            </span>
                             {bar.label}
                           </div>
                           <span
@@ -1038,7 +1113,7 @@ export function HomePage() {
                             {bar.val}%
                           </span>
                         </div>
-                        
+
                         {/* Segmented Digital Progress Bar */}
                         <div className="h-2 w-full bg-zinc-950 flex gap-0.5 border border-white/5">
                           {Array.from({ length: 10 }).map((_, idx) => {
@@ -1049,15 +1124,15 @@ export function HomePage() {
                                 key={idx}
                                 className="h-full flex-grow transition-all duration-500"
                                 style={{
-                                  backgroundColor: isActive 
-                                    ? barColor(bar.val, bar.invert) 
-                                    : "transparent"
+                                  backgroundColor: isActive
+                                    ? barColor(bar.val, bar.invert)
+                                    : "transparent",
                                 }}
                               />
                             );
                           })}
                         </div>
-                        
+
                         {/* Digital Alert Strobe Banner */}
                         {isAlert && (
                           <div className="font-mono text-[8px] tracking-[0.2em] text-gta-pink animate-pulse mt-2 uppercase font-black">
@@ -1079,7 +1154,10 @@ export function HomePage() {
                     <Flame size={20} className="text-gta-pink" />
                     <div className="flex flex-col">
                       <span className="font-display font-black text-xs text-white uppercase tracking-wider">
-                        {gs.burnedHouses} SECCIONAL{gs.burnedHouses > 1 ? "ES" : ""} POLICIAL{gs.burnedHouses > 1 ? "ES" : ""} INCENDIADA{gs.burnedHouses > 1 ? "S" : ""}
+                        {gs.burnedHouses} SECCIONAL
+                        {gs.burnedHouses > 1 ? "ES" : ""} POLICIAL
+                        {gs.burnedHouses > 1 ? "ES" : ""} INCENDIADA
+                        {gs.burnedHouses > 1 ? "S" : ""}
                       </span>
                       <span className="font-mono text-[9px] tracking-widest text-gta-pink uppercase mt-0.5">
                         LA DEFENSA DEL ESTADO SE DECRECE ACELERADAMENTE
@@ -1101,9 +1179,12 @@ export function HomePage() {
                         Acciones Presidenciales
                       </h3>
                     </div>
-                    <Radio size={18} className="text-gta-cyan animate-pulse animate-neon-cyan" />
+                    <Radio
+                      size={18}
+                      className="text-gta-cyan animate-pulse animate-neon-cyan"
+                    />
                   </div>
-                  
+
                   <div className="grid grid-cols-1 gap-4 flex-grow">
                     {[
                       {
@@ -1178,7 +1259,9 @@ export function HomePage() {
                         <div className="flex items-start gap-4">
                           <span
                             className={`p-2 border rounded-none shrink-0 ${
-                              btn.danger ? "border-gta-pink text-gta-pink bg-gta-pink/10" : "border-white/10 text-gta-cyan bg-white/5"
+                              btn.danger
+                                ? "border-gta-pink text-gta-pink bg-gta-pink/10"
+                                : "border-white/10 text-gta-cyan bg-white/5"
                             }`}
                           >
                             {btn.icon}
@@ -1192,11 +1275,11 @@ export function HomePage() {
                                 {btn.effect}
                               </span>
                             </div>
-                            
+
                             <h4 className="font-display font-black text-sm uppercase tracking-wide text-white mt-0.5 group-hover:text-gta-cyan transition-colors">
                               {btn.label}
                             </h4>
-                            
+
                             <p className="text-[11px] text-slate-400 font-serif italic mt-1 leading-relaxed">
                               {btn.desc}
                             </p>
@@ -1210,31 +1293,41 @@ export function HomePage() {
 
               {/* Columna derecha: Inteligencia de Eventos Activos y Ticker Log */}
               <div className="space-y-5">
-                
                 {/* 1. Alertas de Eventos Activos de Inteligencia */}
                 <div
                   style={{
                     backgroundColor: c.background,
-                    borderColor: gs.events.some(e => e.urgent) ? c.primary : c.border,
+                    borderColor: gs.events.some((e) => e.urgent)
+                      ? c.primary
+                      : c.border,
                   }}
                   className="border transition-all duration-300"
                 >
                   <div
                     className="px-4 py-3 flex items-center justify-between border-b"
-                    style={{ 
-                      backgroundColor: gs.events.some(e => e.urgent) ? `${c.primary}15` : c.surface,
-                      borderColor: c.border
+                    style={{
+                      backgroundColor: gs.events.some((e) => e.urgent)
+                        ? `${c.primary}15`
+                        : c.surface,
+                      borderColor: c.border,
                     }}
                   >
                     <div className="flex items-center gap-2">
-                      <AlertTriangle size={16} className={gs.events.some(e => e.urgent) ? "text-gta-pink animate-pulse" : "text-gta-orange"} />
+                      <AlertTriangle
+                        size={16}
+                        className={
+                          gs.events.some((e) => e.urgent)
+                            ? "text-gta-pink animate-pulse"
+                            : "text-gta-orange"
+                        }
+                      />
                       <span className="font-display font-black text-xs tracking-widest uppercase text-white">
                         REPORTES DE INTELIGENCIA
                       </span>
                     </div>
                     <Radio size={14} className="text-slate-500 animate-pulse" />
                   </div>
-                  
+
                   <div className="p-2 space-y-2">
                     {gs.events.length === 0 ? (
                       <div className="text-center py-8 text-xs font-mono tracking-wider text-slate-600 uppercase">
@@ -1247,19 +1340,19 @@ export function HomePage() {
                           initial={{ opacity: 0, x: 20 }}
                           animate={{ opacity: 1, x: 0 }}
                           className={`p-3.5 border text-xs font-mono uppercase tracking-wide relative overflow-hidden flex gap-2.5 items-start ${
-                            ev.urgent 
-                              ? "border-gta-pink bg-gta-pink/5 text-gta-pink" 
+                            ev.urgent
+                              ? "border-gta-pink bg-gta-pink/5 text-gta-pink"
                               : "border-white/5 bg-zinc-950/40 text-slate-300"
                           }`}
                         >
-                          <span className="shrink-0">{ev.urgent ? "🚨" : "📢"}</span>
+                          <span className="shrink-0">
+                            {ev.urgent ? "🚨" : "📢"}
+                          </span>
                           <div>
                             <div className="font-black text-[9px] tracking-widest text-slate-500">
                               REPORTE #{ev.id}
                             </div>
-                            <div className="mt-1 leading-relaxed">
-                              {ev.msg}
-                            </div>
+                            <div className="mt-1 leading-relaxed">{ev.msg}</div>
                           </div>
                         </motion.div>
                       ))
@@ -1277,9 +1370,9 @@ export function HomePage() {
                 >
                   <div
                     className="px-4 py-3 flex items-center justify-between border-b"
-                    style={{ 
+                    style={{
                       backgroundColor: c.surface,
-                      borderColor: c.border
+                      borderColor: c.border,
                     }}
                   >
                     <div className="flex items-center gap-2">
@@ -1288,14 +1381,17 @@ export function HomePage() {
                         REGISTRO DE COMUNICACIONES ƒ(X)
                       </span>
                     </div>
-                    <Activity size={14} className="text-gta-cyan animate-pulse" />
+                    <Activity
+                      size={14}
+                      className="text-gta-cyan animate-pulse"
+                    />
                   </div>
 
                   {/* Monospaced Green Terminal Console Scroll */}
                   <div className="p-4 space-y-2.5 max-h-[360px] overflow-y-auto font-mono text-[11px] leading-relaxed relative bg-black/60">
                     {/* Vertical Green Ticker Line */}
                     <div className="absolute left-2.5 top-0 bottom-0 w-px bg-gta-cyan/10 pointer-events-none" />
-                    
+
                     {gs.log
                       .slice(-15)
                       .reverse()
@@ -1306,20 +1402,27 @@ export function HomePage() {
                           animate={{ opacity: 1, y: 0 }}
                           className="pl-5 relative"
                           style={{
-                            color: i === 0 ? c.text : "rgba(255, 255, 255, 0.4)"
+                            color:
+                              i === 0 ? c.text : "rgba(255, 255, 255, 0.4)",
                           }}
                         >
                           {/* Bullet marker */}
-                          <span 
+                          <span
                             className="absolute left-1.5 top-1.5 w-1.5 h-1.5 rounded-full"
-                            style={{ 
-                              backgroundColor: i === 0 ? c.accent : "rgba(255, 255, 255, 0.2)",
-                              boxShadow: i === 0 ? `0 0 8px ${c.accent}` : "none"
+                            style={{
+                              backgroundColor:
+                                i === 0 ? c.accent : "rgba(255, 255, 255, 0.2)",
+                              boxShadow:
+                                i === 0 ? `0 0 8px ${c.accent}` : "none",
                             }}
                           />
-                          
+
                           {/* Entry text */}
-                          <span className={i === 0 ? "gta-text-glow-cyan font-bold" : ""}>
+                          <span
+                            className={
+                              i === 0 ? "gta-text-glow-cyan font-bold" : ""
+                            }
+                          >
                             {entry}
                           </span>
                         </motion.div>
@@ -1327,7 +1430,6 @@ export function HomePage() {
                   </div>
                 </div>
               </div>
-
             </div>
           )}
         </div>
@@ -1340,7 +1442,10 @@ export function HomePage() {
             PLAN DE GOBIERNO
           </span>
           <h2 className="font-display font-black text-4xl md:text-5xl uppercase tracking-wider text-white mt-1">
-            Manual de <span className="bg-gradient-to-r from-gta-pink to-gta-yellow bg-clip-text text-transparent">Estrategia</span>
+            Manual de{" "}
+            <span className="bg-gradient-to-r from-gta-pink to-gta-yellow bg-clip-text text-transparent">
+              Estrategia
+            </span>
           </h2>
           <p className="font-serif italic text-slate-400 mt-2 max-w-md mx-auto">
             Tres rutas viables. Múltiples desenlaces de gobernabilidad.
@@ -1380,21 +1485,21 @@ export function HomePage() {
               className="p-8 border bg-zinc-950/60 border-white/5 hover:border-gta-pink/25 shadow-2xl gta-card-skew transition-all group"
             >
               <div className="gta-card-skew-inner">
-                <div 
+                <div
                   className="mb-6 p-3.5 inline-block border border-white/10 rounded-none bg-white/5 transition-transform duration-300 group-hover:scale-110"
                   style={{ color: r.color }}
                 >
                   {r.icon}
                 </div>
-                
+
                 <h3 className="font-display font-black text-xl uppercase tracking-wide text-white mb-3">
                   {r.title}
                 </h3>
-                
+
                 <p className="text-sm font-serif italic text-slate-400 leading-relaxed mb-6 border-b border-white/5 pb-6">
                   {r.desc}
                 </p>
-                
+
                 <div
                   className="font-mono text-xs font-black tracking-widest uppercase"
                   style={{ color: r.color }}
@@ -1406,7 +1511,6 @@ export function HomePage() {
           ))}
         </div>
       </section>
-
     </div>
   );
 }
