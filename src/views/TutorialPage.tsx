@@ -6,349 +6,305 @@ import {
   Zap,
   TrendingUp,
   ChevronRight,
+  HelpCircle,
+  AlertTriangle,
 } from "lucide-react";
 import { GiMiner, GiRevolver } from "react-icons/gi";
 import { FaPersonMilitaryToPerson } from "react-icons/fa6";
+import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 export function TutorialPage() {
   const { theme } = useTheme();
   const c = themes[theme];
+  const navigate = useNavigate();
 
   const steps = [
     {
       num: "01",
-      title: "El escenario",
+      title: "El Escenario de Asedio",
       icon: <Zap size={22} />,
       content:
-        "Eres el Presidente Paz. Bolivia está en llamas: Evo Morales moviliza a los Ponchos Rojos y Mineros para derrocarte. Tienes 5 minutos para sobrevivir.",
+        "Asumes la presidencia en medio de un conflicto armado civil. Facciones rebeldes lideradas por Evo Morales cierran el cerco sobre el Palacio Quemado. Tienes 5 minutos exactos para resistir y restaurar el orden.",
     },
     {
       num: "02",
-      title: "La barra de estabilidad",
+      title: "Estabilidad del Estado",
       icon: <Shield size={22} />,
       content:
-        "Esta es tu vida. Si llega a 0%, el gobierno cae. Cae cuando la policía pierde fuerza, los ciudadanos se indignan demasiado o las facciones hostiles crecen sin control.",
+        "Este es tu medidor cardíaco. Si llega a 0%, el gobierno constitucional cae derrocado. Disminuye con disturbios no contenidos, deserción de las fuerzas del orden o una represión desmedida que enfurezca a los civiles.",
     },
     {
       num: "03",
-      title: "Las facciones hostiles",
+      title: "Las Facciones Altiplánicas",
       icon: <GiRevolver size={22} />,
       content:
-        "Ponchos Rojos y Mineros suben gradualmente. Si superan el 70%, la estabilidad cae rápido. Puedes contenerlos con diálogo, negociación o fuerza, pero cada opción tiene costos.",
+        "Ponchos Rojos y Mineros inician bloqueos y suben de intensidad cada segundo. Si superan el 70% de control, destruyen tu estabilidad. Puedes repelerlos temporalmente con diálogo o despliegue militar.",
     },
     {
       num: "04",
-      title: "Los ciudadanos",
+      title: "El Descontento de las Calles",
       icon: <Users size={22} />,
       content:
-        "Si los bloqueos duran mucho o usas fuerza brutal, los ciudadanos se movilizan. Con más de 80% de enojo, se convierten en el golpe de gracia para tu gobierno.",
+        "El enojo ciudadano es tu golpe final. Si los bloqueos paralizan el país o respondes con represión desmedida (Fuerza Bruta), los civiles se levantarán. Un enojo superior al 95% causará un derrocamiento automático.",
     },
     {
       num: "05",
-      title: "Tu policía y militares",
+      title: "Las Fuerzas Armadas y Policía",
       icon: <FaPersonMilitaryToPerson size={22} />,
       content:
-        "Son tu escudo. Si las casas policiales son quemadas o hay muertos, su moral cae. Sin policía activa (0%), caes de inmediato. Refuérzalos cuando puedas.",
+        "Son tu único escudo protector. Si las estaciones policiales son destruidas o la moral cae a 0%, pierdes de inmediato. Llama refuerzos tácticos preventivamente antes de perder el control.",
     },
     {
       num: "06",
-      title: "Las decisiones",
+      title: "Consola de Decisiones",
       icon: <TrendingUp size={22} />,
       content:
-        "Tienes 6 acciones disponibles en tiempo real. Cada una afecta múltiples variables. No existe la decisión perfecta: solo el mejor equilibrio posible.",
+        "Dispones de 6 comandos tácticos en tiempo real. Cada uno modifica múltiples variables socio-políticas a la vez. No hay decisiones ideales: solo la búsqueda constante del equilibrio.",
     },
   ];
 
   const actions = [
     {
-      label: "Diálogo nacional",
-      effect: "+Estabilidad, -Tensión general",
-      risk: "Bajo",
+      label: "Diálogo Nacional",
+      effect: "+9% Estabilidad, -6% Facciones",
+      risk: "MÍNIMO",
       icon: <Users size={16} />,
     },
     {
-      label: "Fuerza moderada",
-      effect: "-Ponchos/-Mineros, +Ciudadanos enojados",
-      risk: "Medio",
+      label: "Fuerza Moderada",
+      effect: "-11% Ponchos/Mineros, +4% Civiles",
+      risk: "MEDIO",
       icon: <Shield size={16} />,
     },
     {
-      label: "Fuerza bruta ⚠️",
-      effect: "-Mucho hostil, ++Caos ciudadano, +Casas quemadas",
-      risk: "Extremo",
+      label: "Fuerza Bruta Militar ⚠️",
+      effect: "-28% Hostiles, ++Caos Civil, Incendios",
+      risk: "EXTREMO",
       icon: <Skull size={16} />,
     },
     {
-      label: "Negociar con mineros",
-      effect: "-Mineros, +Estabilidad",
-      risk: "Bajo",
+      label: "Negociar con Mineros",
+      effect: "-17% Mineros, +6% Estabilidad",
+      risk: "MÍNIMO",
       icon: <GiMiner size={16} />,
     },
     {
-      label: "Llamar refuerzos",
-      effect: "+Policía, +Estabilidad",
-      risk: "Bajo",
+      label: "Refuerzos Militares",
+      effect: "+18% Defensa, +6% Estabilidad",
+      risk: "MÍNIMO",
       icon: <FaPersonMilitaryToPerson size={16} />,
     },
     {
-      label: "Cadena nacional",
-      effect: "-Ciudadanos enojados",
-      risk: "Bajo",
+      label: "Cadena Nacional",
+      effect: "-22% Enojo Civil",
+      risk: "MÍNIMO",
       icon: <Zap size={16} />,
     },
   ];
 
   const riskColor = (r: string) =>
-    r === "Bajo" ? "#22c55e" : r === "Medio" ? "#f59e0b" : c.primary;
+    r === "MÍNIMO" ? "#00f0ff" : r === "MEDIO" ? "#facc15" : c.primary;
 
   return (
     <div
       style={{
         backgroundColor: c.background,
         color: c.text,
-        fontFamily: "'Oswald', sans-serif",
       }}
-      className="min-h-screen"
+      className="min-h-screen relative overflow-hidden pb-24"
     >
-      <style>{`@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Source+Serif+4:ital,wght@0,300;0,400;1,300&display=swap');`}</style>
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,42,133,0.12)_0%,transparent_50%),radial-gradient(circle_at_bottom,rgba(0,240,255,0.06)_0%,transparent_60%)] pointer-events-none z-0" />
+      <div className="absolute inset-0 gta-grid-bg opacity-[0.3] z-0" />
 
       {/* Header */}
       <div
-        className="px-6 py-16 text-center"
+        className="relative px-6 py-24 text-center border-b border-white/5"
         style={{
-          borderBottom: `2px solid ${c.primary}`,
-          backgroundColor: c.surface,
+          background: `linear-gradient(180deg, ${c.surface} 0%, transparent 100%)`,
         }}
       >
-        <div
-          className="inline-block px-4 py-1 text-xs font-semibold tracking-widest mb-6 uppercase"
-          style={{ backgroundColor: c.primary, color: "#fff" }}
+        <motion.div
+          initial={{ opacity: 0, y: -15 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="inline-flex items-center gap-2 px-4 py-1 border border-gta-pink/30 bg-gta-pink/10 text-gta-pink text-[10px] font-display font-black tracking-[0.3em] uppercase mb-6 gta-card-skew"
         >
-          Manual del jugador
-        </div>
-        <h1 className="text-5xl font-black uppercase" style={{ color: c.text }}>
-          CÓMO <span style={{ color: c.primary }}>JUGAR</span>
-        </h1>
-        <p
-          className="mt-4 text-lg max-w-xl mx-auto"
-          style={{
-            color: c.textSecondary,
-            fontFamily: "'Source Serif 4', serif",
-            fontStyle: "italic",
-          }}
+          <span className="gta-card-skew-inner flex items-center gap-1.5">
+            <HelpCircle size={12} /> MANUAL DE OPERACIONES TÁCTICAS // PROTOCOLOS
+          </span>
+        </motion.div>
+        
+        <motion.h1
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6 }}
+          className="text-5xl md:text-7xl font-display font-black uppercase tracking-wider leading-none"
         >
-          Todo lo que necesitas saber para mantener Bolivia en pie.
-        </p>
+          CÓMO <span className="bg-gradient-to-r from-gta-pink to-gta-orange bg-clip-text text-transparent">SOBREVIVIR</span>
+        </motion.h1>
+        
+        <motion.p
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.15 }}
+          className="max-w-2xl mx-auto text-base md:text-lg font-serif italic text-slate-400 mt-6 leading-relaxed"
+        >
+          Todo lo que necesitas dominar en la terminal presidencial para resistir el golpe de estado.
+        </motion.p>
       </div>
 
-      <div className="max-w-5xl mx-auto px-6 py-16 space-y-16">
-        {/* Objetivo rápido */}
-        <div
-          className="p-8 text-center relative overflow-hidden"
-          style={{
-            border: `2px solid ${c.primary}`,
-            backgroundColor: c.surface,
-          }}
+      <div className="max-w-5xl mx-auto px-6 py-16 space-y-20 relative z-10">
+        
+        {/* Widescreen Objective Panel */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="p-8 border border-gta-pink bg-gta-pink/5 backdrop-blur-md text-center relative overflow-hidden gta-card-skew shadow-[0_0_25px_rgba(255,42,133,0.1)]"
         >
-          <div
-            className="absolute inset-0 opacity-5"
-            style={{
-              backgroundImage: `repeating-linear-gradient(45deg, ${c.primary} 0px, ${c.primary} 1px, transparent 1px, transparent 16px)`,
-            }}
-          />
-          <div className="relative">
-            <div
-              className="text-5xl font-black mb-2"
-              style={{ color: c.primary }}
-            >
-              5:00
+          <div className="absolute inset-0 danger-stripes opacity-[0.03] pointer-events-none" />
+          <div className="gta-card-skew-inner">
+            <div className="text-6xl font-display font-black text-white gta-text-glow-pink">
+              300 SECONDS
             </div>
-            <div
-              className="text-xl font-bold uppercase tracking-widest"
-              style={{ color: c.text }}
-            >
-              Minutos para sobrevivir
+            <div className="font-mono text-xs font-black tracking-[0.2em] text-gta-pink uppercase mt-2">
+              LÍMITE MÁXIMO // TIEMPO DE RESISTENCIA
             </div>
-            <p
-              className="mt-3 text-sm"
-              style={{
-                color: c.textSecondary,
-                fontFamily: "'Source Serif 4', serif",
-              }}
-            >
-              No necesitas resolver la crisis. Solo necesitas que el reloj
-              llegue a cero con el gobierno en pie.
+            <p className="mt-4 max-w-xl mx-auto text-xs font-serif italic text-slate-400 leading-relaxed">
+              No tienes que erradicar por completo la disidencia política en Bolivia. Tu única meta es que el temporizador táctico llegue a cero con el gobierno en funciones.
             </p>
           </div>
-        </div>
+        </motion.div>
 
-        {/* Pasos */}
-        <section>
-          <h2
-            className="text-3xl font-bold uppercase tracking-widest mb-8"
-            style={{ color: c.text }}
-          >
-            Guía <span style={{ color: c.primary }}>paso a paso</span>
+        {/* Steps Grid */}
+        <section className="space-y-10">
+          <h2 className="text-3xl font-display font-black uppercase text-white">
+            Protocolos de <span className="text-gta-cyan">Gobernabilidad</span>
           </h2>
+          
           <div className="grid md:grid-cols-2 gap-6">
-            {steps.map((s) => (
-              <div
+            {steps.map((s, idx) => (
+              <motion.div
                 key={s.num}
-                className="p-6 flex gap-4"
-                style={{
-                  border: `1px solid ${c.border}`,
-                  backgroundColor: c.surface,
-                }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: idx * 0.05 }}
+                className="p-6 border bg-zinc-950/40 border-white/5 hover:border-gta-cyan/20 transition-all flex gap-4 gta-card-skew"
               >
-                <div
-                  className="shrink-0 text-3xl font-black leading-none"
-                  style={{ color: `${c.primary}40` }}
-                >
-                  {s.num}
-                </div>
-                <div>
-                  <div className="flex items-center gap-2 mb-2">
-                    <span style={{ color: c.primary }}>{s.icon}</span>
-                    <div
-                      className="font-bold uppercase tracking-wide"
-                      style={{ color: c.text }}
-                    >
-                      {s.title}
-                    </div>
+                <div className="gta-card-skew-inner flex gap-5">
+                  <div className="font-display font-black text-4xl text-white/10 shrink-0 leading-none">
+                    {s.num}
                   </div>
-                  <p
-                    className="text-sm"
-                    style={{
-                      color: c.textSecondary,
-                      fontFamily: "'Source Serif 4', serif",
-                    }}
-                  >
-                    {s.content}
-                  </p>
+                  <div>
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className="text-gta-cyan">{s.icon}</span>
+                      <h3 className="font-display font-black text-base uppercase text-white tracking-wide">
+                        {s.title}
+                      </h3>
+                    </div>
+                    <p className="text-xs font-serif italic text-slate-400 leading-relaxed">
+                      {s.content}
+                    </p>
+                  </div>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </section>
 
-        {/* Tabla de acciones */}
-        <section>
-          <h2
-            className="text-3xl font-bold uppercase tracking-widest mb-8"
-            style={{ color: c.text }}
-          >
-            Tabla de <span style={{ color: c.primary }}>acciones</span>
+        {/* Actions Table */}
+        <section className="space-y-10">
+          <h2 className="text-3xl font-display font-black uppercase text-white">
+            Matriz de <span className="text-gta-pink">Riesgos</span>
           </h2>
-          <div style={{ border: `1px solid ${c.border}` }}>
-            <div
-              className="grid grid-cols-3 px-4 py-2 text-xs uppercase tracking-widest font-bold"
-              style={{ backgroundColor: c.primary, color: "#fff" }}
-            >
-              <span>Acción</span>
-              <span>Efecto</span>
-              <span>Riesgo</span>
+          
+          <div className="border border-white/5 bg-zinc-950/70 backdrop-blur-md overflow-hidden">
+            <div className="grid grid-cols-3 px-6 py-4 font-display font-black text-[10px] tracking-[0.2em] bg-gta-pink text-white uppercase">
+              <span>Comando Presidencial</span>
+              <span>Consecuencia de Estado</span>
+              <span>Evaluación de Riesgo</span>
             </div>
-            {actions.map((a, i) => (
-              <div
-                key={a.label}
-                className="grid grid-cols-3 px-4 py-3 text-sm items-center"
-                style={{
-                  backgroundColor: i % 2 === 0 ? c.background : c.surface,
-                  borderTop: `1px solid ${c.border}`,
-                }}
-              >
+            
+            <div className="divide-y divide-white/5">
+              {actions.map((a) => (
                 <div
-                  className="flex items-center gap-2"
-                  style={{ color: c.text }}
+                  key={a.label}
+                  className="grid grid-cols-3 px-6 py-4.5 text-xs items-center hover:bg-white/5 transition-colors"
                 >
-                  <span style={{ color: c.primary }}>{a.icon}</span>
-                  <span className="font-semibold text-xs uppercase tracking-wide">
+                  <div className="flex items-center gap-3 font-display font-bold uppercase tracking-widest text-[11px] text-white">
+                    <span className="text-gta-cyan">{a.icon}</span>
                     {a.label}
-                  </span>
+                  </div>
+                  <div className="font-serif italic text-slate-400 pr-4 leading-relaxed">
+                    {a.effect}
+                  </div>
+                  <div
+                    className="font-mono text-[10px] tracking-widest font-black uppercase"
+                    style={{ color: riskColor(a.risk) }}
+                  >
+                    {a.risk}
+                  </div>
                 </div>
-                <div
-                  className="text-xs"
-                  style={{
-                    color: c.textSecondary,
-                    fontFamily: "'Source Serif 4', serif",
-                  }}
-                >
-                  {a.effect}
-                </div>
-                <div
-                  className="text-xs font-bold uppercase tracking-widest"
-                  style={{ color: riskColor(a.risk) }}
-                >
-                  {a.risk}
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </section>
 
-        {/* Consejos */}
-        <section>
-          <h2
-            className="text-3xl font-bold uppercase tracking-widest mb-8"
-            style={{ color: c.text }}
-          >
-            Consejos <span style={{ color: c.primary }}>del veterano</span>
+        {/* Tips */}
+        <section className="space-y-10">
+          <h2 className="text-3xl font-display font-black uppercase text-white">
+            Directrices de <span className="text-gta-cyan">Inteligencia</span>
           </h2>
+          
           <div className="space-y-4">
             {[
-              "Usa Diálogo en los primeros 2 minutos para ganar tiempo y bajar la tensión inicial.",
-              "Llama Refuerzos cuando la Policía caiga por debajo de 50%. No esperes que llegue a cero.",
-              "Negocia con Mineros si sus bloqueos duran más de 30 segundos. Es más barato que dejarlos crecer.",
-              "Nunca uses Fuerza Bruta dos veces seguidas. El efecto acumulado en ciudadanos puede ser mortal.",
-              "Usa Cadena Nacional cuando los ciudadanos superen 50%. Es tu herramienta más segura.",
-              "Los Ponchos Rojos son más difíciles de bajar. Prioriza contenerlos con Fuerza Moderada, no bruta.",
-            ].map((tip, i) => (
-              <div
-                key={i}
-                className="flex items-start gap-4 p-4"
-                style={{
-                  border: `1px solid ${c.border}`,
-                  backgroundColor: c.surface,
-                }}
+              "Activa 'Diálogo Nacional' preventivamente en el primer minuto. Bajar la agitación inicial te dará margen para respirar.",
+              "Despliega 'Refuerzos Militares' en cuanto el control policial caiga del 50%. Si la defensa del palacio llega a cero, el juego termina.",
+              "Establece 'Convenios Mineros' si los bloqueos duran más de 40 segundos. El ahogo financiero colapsará tu estabilidad de forma sigilosa.",
+              "Evita encadenar el uso de 'Fuerza Bruta'. El enojo civil acumulado escalará en incendios de estaciones de policía y una movilización masiva.",
+              "Usa 'Cadena Nacional' como escudo. Cuando el odio civil supere el 50%, este canal es la única defensa limpia y libre de efectos colaterales.",
+              "Los Ponchos Rojos son la facción más beligerante. Neutralízalos con 'Fuerza Moderada' y no abuses de la diplomacia con ellos.",
+            ].map((tip, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, x: -10 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: idx * 0.05 }}
+                className="flex items-start gap-4 p-4.5 border border-white/5 bg-zinc-950/40 hover:border-white/10 transition-colors"
               >
-                <div
-                  className="shrink-0 w-6 h-6 flex items-center justify-center text-xs font-bold"
-                  style={{ backgroundColor: c.primary, color: "#fff" }}
-                >
-                  {i + 1}
+                <div className="shrink-0 w-7 h-7 flex items-center justify-center font-display font-black text-xs bg-gta-cyan text-black shadow-md shadow-gta-cyan/10">
+                  {idx + 1}
                 </div>
-                <p
-                  className="text-sm"
-                  style={{
-                    color: c.textSecondary,
-                    fontFamily: "'Source Serif 4', serif",
-                  }}
-                >
+                <p className="text-xs font-serif italic text-slate-400 leading-relaxed pt-0.5">
                   {tip}
                 </p>
-              </div>
+              </motion.div>
             ))}
           </div>
         </section>
 
         {/* CTA */}
-        <div className="text-center pt-4">
-          <p
-            className="mb-6 text-lg font-bold uppercase tracking-widest"
-            style={{ color: c.text }}
-          >
-            ¿Listo para asumir el mando?
+        <motion.div 
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center pt-8"
+        >
+          <p className="mb-6 font-display font-black text-sm uppercase tracking-widest text-slate-400">
+            ¿ESTÁS PREPARADO PARA GOBERNAR EN EL CAOS?
           </p>
-          <a
-            href="/"
-            className="inline-flex items-center gap-3 px-10 py-4 text-sm font-bold uppercase tracking-widest transition-all duration-200 hover:scale-105"
-            style={{ backgroundColor: c.primary, color: "#fff" }}
+          <button
+            onClick={() => navigate("/")}
+            className="inline-flex items-center gap-3 px-12 py-5 font-display font-black text-xs uppercase tracking-[0.25em] bg-gta-pink text-white hover:scale-105 active:scale-95 transition-all duration-200 cursor-pointer shadow-lg shadow-gta-pink/20 hover:shadow-gta-pink/35 border border-gta-pink"
           >
-            <Zap size={18} />
-            Ir al juego
-            <ChevronRight size={16} />
-          </a>
-        </div>
+            <Zap size={16} />
+            INICIAR TRANSICIÓN DE MANDO
+            <ChevronRight size={14} />
+          </button>
+        </motion.div>
+
       </div>
     </div>
   );

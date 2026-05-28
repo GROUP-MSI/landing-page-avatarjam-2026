@@ -14,8 +14,8 @@ const menuItems = [
 ];
 
 const themeOptions: { name: string; value: Theme; icon: string }[] = [
-  { name: "Verde Claro", value: "light", icon: "🌿" },
-  { name: "Verde Oscuro", value: "dark", icon: "🌲" },
+  { name: "Bolivia Sol", value: "light", icon: "☀️" },
+  { name: "Vice City", value: "dark", icon: "🌆" },
 ];
 
 export const NavbarHome = () => {
@@ -38,26 +38,39 @@ export const NavbarHome = () => {
   return (
     <nav
       className={`sticky top-0 z-50 transition-all duration-300 ${
-        scrolled ? "shadow-lg" : ""
+        scrolled ? "shadow-[0_10px_30px_rgba(0,0,0,0.5)] backdrop-blur-md bg-opacity-80" : ""
       }`}
       style={{
-        backgroundColor: currentThemeColors.surface,
-        borderBottom: `1px solid ${currentThemeColors.border}`,
+        backgroundColor: scrolled && theme === "dark" 
+          ? "rgba(13, 13, 20, 0.85)" 
+          : scrolled && theme === "light"
+          ? "rgba(255, 255, 255, 0.85)"
+          : currentThemeColors.surface,
+        borderBottom: `1px solid ${scrolled ? "rgba(255,255,255,0.06)" : currentThemeColors.border}`,
       }}
     >
       <div className="mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          {/* Logo */}
+        <div className="flex justify-between items-center h-20">
+          {/* Logo & Brand Title */}
           <div
-            className="flex items-center w-[130px] justify-between"
+            className="flex items-center gap-3 cursor-pointer group"
+            onClick={() => navigate("/")}
             style={{
               color: currentThemeColors.text,
             }}
           >
-            <img src={logo} alt="Logo" className="h-10 w-auto object-contain" />
-            <p>
-              <b>THE MSI VIP</b>
-            </p>
+            <div className="relative">
+              <img src={logo} alt="Logo" className="h-11 w-auto object-contain transition-transform duration-300 group-hover:scale-105" />
+              <div className="absolute inset-0 bg-gta-pink blur-md opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
+            </div>
+            <div className="flex flex-col">
+              <span className="font-display font-black text-sm tracking-wider uppercase leading-none">
+                THE MSI VIP
+              </span>
+              <span className="text-[10px] text-gta-pink tracking-[0.25em] font-bold uppercase leading-none mt-1">
+                CRISIS ESTADO
+              </span>
+            </div>
           </div>
 
           {/* Desktop Menu - visible en pantallas >= 1030px */}
@@ -66,12 +79,11 @@ export const NavbarHome = () => {
               <button
                 key={item.name}
                 onClick={() => navigate(item.href)}
-                className="transition-colors duration-200 font-medium"
+                className="transition-colors duration-200 font-display font-bold uppercase tracking-widest text-[11px] cursor-pointer"
                 style={{
                   color: currentThemeColors.textSecondary,
                   background: "transparent",
                   border: "none",
-                  cursor: "pointer",
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.color = currentThemeColors.primary;
@@ -87,18 +99,19 @@ export const NavbarHome = () => {
           </div>
 
           {/* Desktop Buttons - visible en pantallas >= 1030px */}
-          <div className="max-lg:hidden flex items-center space-x-4">
+          <div className="max-lg:hidden flex items-center space-x-5">
             {/* Theme Switcher */}
             <div className="relative">
               <button
                 onClick={() => setIsThemeOpen(!isThemeOpen)}
-                className="p-2 rounded-lg transition-colors duration-200"
+                className="p-2.5 rounded-none border transition-colors duration-200 cursor-pointer"
                 style={{
                   backgroundColor: currentThemeColors.background,
                   color: currentThemeColors.text,
+                  borderColor: currentThemeColors.border,
                 }}
               >
-                <span className="text-xl">
+                <span className="text-lg flex items-center justify-center">
                   {themeOptions.find((t) => t.value === theme)?.icon || "🎨"}
                 </span>
               </button>
@@ -110,7 +123,7 @@ export const NavbarHome = () => {
                     onClick={() => setIsThemeOpen(false)}
                   />
                   <div
-                    className="absolute right-0 mt-2 w-48 rounded-md shadow-lg z-50"
+                    className="absolute right-0 mt-3 w-48 rounded-none shadow-2xl z-50"
                     style={{
                       backgroundColor: currentThemeColors.surface,
                       border: `1px solid ${currentThemeColors.border}`,
@@ -123,12 +136,12 @@ export const NavbarHome = () => {
                           setTheme(option.value);
                           setIsThemeOpen(false);
                         }}
-                        className="flex items-center space-x-2 w-full px-4 py-2 text-left transition-colors duration-200"
+                        className="flex items-center space-x-3 w-full px-4 py-3 text-left transition-colors duration-200 font-display font-bold uppercase tracking-wider text-xs cursor-pointer"
                         style={{
                           color: currentThemeColors.text,
                           backgroundColor:
                             theme === option.value
-                              ? currentThemeColors.primary + "20"
+                              ? currentThemeColors.primary + "15"
                               : "transparent",
                         }}
                         onMouseEnter={(e) => {
@@ -154,37 +167,41 @@ export const NavbarHome = () => {
             </div>
 
             <button
-              className="px-4 py-2 rounded-lg transition-all duration-200 font-medium"
+              className="px-5 py-2.5 rounded-none font-display font-bold uppercase tracking-widest text-[10px] transition-all duration-200 hover:scale-105 cursor-pointer shadow-lg shadow-gta-pink/10"
               style={{
                 backgroundColor: currentThemeColors.primary,
                 color: "white",
+                border: `1px solid ${currentThemeColors.primary}`,
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.opacity = "0.9";
-                e.currentTarget.style.transform = "translateY(-1px)";
+                e.currentTarget.style.backgroundColor = "transparent";
+                e.currentTarget.style.color = currentThemeColors.primary;
+                e.currentTarget.style.boxShadow = `0 0 15px ${currentThemeColors.primary}30`;
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.opacity = "1";
-                e.currentTarget.style.transform = "translateY(0)";
+                e.currentTarget.style.backgroundColor = currentThemeColors.primary;
+                e.currentTarget.style.color = "white";
+                e.currentTarget.style.boxShadow = "none";
               }}
             >
               Iniciar Sesión
             </button>
             <button
-              className="px-4 py-2 rounded-lg transition-all duration-200 font-medium"
+              className="px-5 py-2.5 rounded-none font-display font-bold uppercase tracking-widest text-[10px] transition-all duration-200 hover:scale-105 cursor-pointer"
               style={{
                 backgroundColor: "transparent",
-                border: `2px solid ${currentThemeColors.primary}`,
-                color: currentThemeColors.primary,
+                border: `1px solid ${currentThemeColors.text}`,
+                color: currentThemeColors.text,
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor =
-                  currentThemeColors.primary;
-                e.currentTarget.style.color = "white";
+                e.currentTarget.style.borderColor = currentThemeColors.primary;
+                e.currentTarget.style.color = currentThemeColors.primary;
+                e.currentTarget.style.boxShadow = `0 0 15px ${currentThemeColors.primary}20`;
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = "transparent";
-                e.currentTarget.style.color = currentThemeColors.primary;
+                e.currentTarget.style.borderColor = currentThemeColors.text;
+                e.currentTarget.style.color = currentThemeColors.text;
+                e.currentTarget.style.boxShadow = "none";
               }}
             >
               Registro

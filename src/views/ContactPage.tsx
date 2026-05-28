@@ -1,6 +1,7 @@
 import { useTheme, themes } from "../context/ThemeContext";
-import { Mail, Phone, MapPin, Send } from "lucide-react";
+import { Mail, Phone, MapPin, Send, MessageSquare, ShieldAlert } from "lucide-react";
 import { useState } from "react";
+import { motion } from "framer-motion";
 
 export default function ContactPage() {
   const { theme } = useTheme();
@@ -23,14 +24,17 @@ export default function ContactPage() {
     {
       name: "Deynar Luis Calle",
       email: "lpze.deynarluis.calle.la@unifranz.edu.bo",
+      tag: "AGENTE 3D",
     },
     {
       name: "Wilmer Cruz",
       email: "lpze.wilmer.cruz.ar@unifranz.edu.bo",
+      tag: "AGENTE UI",
     },
     {
       name: "Luis Diego Blanco",
       email: "lpze.luisdiego.blanco.hu@unifranz.edu.bo",
+      tag: "AGENTE DEV",
     },
   ];
 
@@ -39,49 +43,54 @@ export default function ContactPage() {
       style={{
         backgroundColor: c.background,
         color: c.text,
-        fontFamily: "'Oswald', sans-serif",
       }}
-      className="min-h-screen"
+      className="min-h-screen relative overflow-hidden pb-24"
     >
-      <style>{`@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Source+Serif+4:ital,wght@0,300;0,400;1,300&display=swap');`}</style>
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,42,133,0.12)_0%,transparent_50%),radial-gradient(circle_at_bottom,rgba(0,240,255,0.06)_0%,transparent_60%)] pointer-events-none z-0" />
+      <div className="absolute inset-0 gta-grid-bg opacity-[0.3] z-0" />
 
       {/* Header */}
       <div
-        className="px-6 py-16 text-center"
+        className="relative px-6 py-24 text-center border-b border-white/5"
         style={{
-          borderBottom: `2px solid ${c.primary}`,
-          backgroundColor: c.surface,
+          background: `linear-gradient(180deg, ${c.surface} 0%, transparent 100%)`,
         }}
       >
-        <div
-          className="inline-block px-4 py-1 text-xs font-semibold tracking-widest mb-6 uppercase"
-          style={{ backgroundColor: c.primary, color: "#fff" }}
+        <motion.div
+          initial={{ opacity: 0, y: -15 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="inline-flex items-center gap-2 px-4 py-1 border border-gta-cyan/30 bg-gta-cyan/10 text-gta-cyan text-[10px] font-display font-black tracking-[0.3em] uppercase mb-6 gta-card-skew"
         >
-          Unifranz Bolivia
-        </div>
-        <h1 className="text-5xl font-black uppercase" style={{ color: c.text }}>
-          CON<span style={{ color: c.primary }}>TACTO</span>
-        </h1>
-        <p
-          className="mt-4 text-lg max-w-xl mx-auto"
-          style={{
-            color: c.textSecondary,
-            fontFamily: "'Source Serif 4', serif",
-            fontStyle: "italic",
-          }}
+          <span className="gta-card-skew-inner flex items-center gap-1.5">
+            <ShieldAlert size={12} className="animate-pulse" /> TERMINAL DE ENLACE // ENCRIPTADO ESTATAL
+          </span>
+        </motion.div>
+        
+        <motion.h1
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6 }}
+          className="text-5xl md:text-7xl font-display font-black uppercase tracking-wider leading-none"
         >
-          ¿Preguntas sobre el proyecto? Escríbenos.
-        </p>
+          ENVIAR <span className="bg-gradient-to-r from-gta-pink via-gta-orange to-gta-yellow bg-clip-text text-transparent gta-text-glow-pink">REPORTE</span>
+        </motion.h1>
+        
+        <motion.p
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.15 }}
+          className="max-w-2xl mx-auto text-base md:text-lg font-serif italic text-slate-400 mt-6 leading-relaxed"
+        >
+          ¿Tienes sugerencias tácticas o reportes del simulador? Contáctanos de forma segura.
+        </motion.p>
       </div>
 
-      <div className="max-w-5xl mx-auto px-6 py-16 grid md:grid-cols-2 gap-12">
+      <div className="max-w-5xl mx-auto px-6 py-16 grid md:grid-cols-2 gap-12 relative z-10">
+        
         {/* Info */}
         <div className="space-y-8">
-          <h2
-            className="text-2xl font-bold uppercase tracking-widest"
-            style={{ color: c.text }}
-          >
-            Equipo del <span style={{ color: c.primary }}>proyecto</span>
+          <h2 className="text-2xl font-display font-black uppercase tracking-wide text-white">
+            Gabinete de <span className="text-gta-pink">Comunicaciones</span>
           </h2>
 
           {/* Miembros */}
@@ -89,82 +98,65 @@ export default function ContactPage() {
             {contacts.map((ct) => (
               <div
                 key={ct.email}
-                className="p-4"
-                style={{
-                  border: `1px solid ${c.border}`,
-                  backgroundColor: c.surface,
-                }}
+                className="p-5 border bg-zinc-950/60 border-white/5 hover:border-gta-cyan/35 transition-all gta-card-skew group"
               >
-                <div
-                  className="font-bold uppercase tracking-wide mb-1"
-                  style={{ color: c.text }}
-                >
-                  {ct.name}
+                <div className="gta-card-skew-inner flex justify-between items-center">
+                  <div>
+                    <span className="font-mono text-[8px] tracking-[0.25em] text-slate-500 font-bold uppercase">
+                      {ct.tag}
+                    </span>
+                    <h3 className="font-display font-black text-base uppercase text-white mt-1 group-hover:text-gta-cyan transition-colors">
+                      {ct.name}
+                    </h3>
+                    <a
+                      href={`mailto:${ct.email}`}
+                      className="flex items-center gap-1.5 text-xs font-mono tracking-wide text-gta-pink mt-2 hover:opacity-75 transition-opacity"
+                    >
+                      <Mail size={12} />
+                      {ct.email}
+                    </a>
+                  </div>
+                  
+                  <span className="font-mono text-[9px] tracking-widest text-gta-cyan font-black border border-gta-cyan/20 px-2 py-1 bg-gta-cyan/5">
+                    ONLINE
+                  </span>
                 </div>
-                <a
-                  href={`mailto:${ct.email}`}
-                  className="flex items-center gap-2 text-sm transition-opacity hover:opacity-70"
-                  style={{ color: c.primary }}
-                >
-                  <Mail size={13} />
-                  {ct.email}
-                </a>
               </div>
             ))}
           </div>
 
           {/* Teléfono */}
-          <div
-            className="p-4 flex items-center gap-4"
-            style={{
-              border: `1px solid ${c.border}`,
-              backgroundColor: c.surface,
-            }}
-          >
+          <div className="p-4 border bg-zinc-950/40 border-white/5 flex items-center gap-4">
             <div
-              className="p-3"
-              style={{ backgroundColor: `${c.primary}20`, color: c.primary }}
+              className="p-3 border border-gta-cyan/20 bg-gta-cyan/5 text-gta-cyan shrink-0"
             >
               <Phone size={20} />
             </div>
             <div>
-              <div
-                className="text-xs uppercase tracking-widest mb-1"
-                style={{ color: c.textSecondary }}
-              >
-                Teléfono
+              <div className="font-mono text-[9px] tracking-widest text-slate-500 uppercase">
+                ENLACE ENCRIPTADO
               </div>
-              <div className="font-bold" style={{ color: c.text }}>
-                +591 78824516
+              <div className="font-display font-black text-base text-white tracking-wider mt-0.5">
+                +591 788-24-516
               </div>
             </div>
           </div>
 
           {/* Universidad */}
-          <div
-            className="p-4 flex items-center gap-4"
-            style={{
-              border: `1px solid ${c.border}`,
-              backgroundColor: c.surface,
-            }}
-          >
+          <div className="p-4 border bg-zinc-950/40 border-white/5 flex items-center gap-4">
             <div
-              className="p-3"
-              style={{ backgroundColor: `${c.primary}20`, color: c.primary }}
+              className="p-3 border border-gta-pink/20 bg-gta-pink/5 text-gta-pink shrink-0"
             >
               <MapPin size={20} />
             </div>
             <div>
-              <div
-                className="text-xs uppercase tracking-widest mb-1"
-                style={{ color: c.textSecondary }}
-              >
-                Universidad
+              <div className="font-mono text-[9px] tracking-widest text-slate-500 uppercase">
+                UBICACIÓN CENTRAL
               </div>
-              <div className="font-bold" style={{ color: c.text }}>
-                Universidad Privada Franz Tamayo
+              <div className="font-display font-black text-sm text-white tracking-wider mt-0.5 uppercase">
+                Universidad Franz Tamayo (Unifranz)
               </div>
-              <div className="text-sm" style={{ color: c.textSecondary }}>
+              <div className="font-serif italic text-xs text-slate-400">
                 La Paz, Bolivia
               </div>
             </div>
@@ -173,60 +165,47 @@ export default function ContactPage() {
 
         {/* Formulario */}
         <div>
-          <h2
-            className="text-2xl font-bold uppercase tracking-widest mb-8"
-            style={{ color: c.text }}
-          >
-            Envíanos un <span style={{ color: c.primary }}>mensaje</span>
+          <h2 className="text-2xl font-display font-black uppercase tracking-wide text-white mb-8">
+            Establecer <span className="text-gta-cyan">Transmisión</span>
           </h2>
 
           {sent ? (
-            <div
-              className="p-8 text-center"
-              style={{
-                border: `2px solid ${c.primary}`,
-                backgroundColor: c.surface,
-              }}
+            <motion.div
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              className="p-8 text-center border border-gta-cyan bg-gta-cyan/5 backdrop-blur-md shadow-[0_0_20px_rgba(0,240,255,0.15)] gta-card-skew"
             >
-              <div className="text-4xl mb-4">✅</div>
-              <div
-                className="font-bold text-lg uppercase"
-                style={{ color: c.text }}
-              >
-                ¡Mensaje enviado!
+              <div className="gta-card-skew-inner">
+                <div className="text-5xl mb-4 animate-bounce">📡</div>
+                <div className="font-display font-black text-xl text-white uppercase tracking-wider">
+                  ¡TRANSMISIÓN EXITOSA!
+                </div>
+                <p className="text-xs font-serif italic text-slate-400 mt-3 leading-relaxed">
+                  El reporte ha sido procesado de forma confidencial. El gabinete de crisis revisará los datos.
+                </p>
               </div>
-              <p className="text-sm mt-2" style={{ color: c.textSecondary }}>
-                Te responderemos a la brevedad.
-              </p>
-            </div>
+            </motion.div>
           ) : (
-            <div className="space-y-4">
+            <div className="space-y-5">
               {[
-                { id: "name", label: "Nombre completo", type: "input" },
-                { id: "email", label: "Correo electrónico", type: "input" },
-                { id: "msg", label: "Mensaje", type: "textarea" },
+                { id: "name", label: "Identificación / Nombre completo", type: "input", icon: "👤" },
+                { id: "email", label: "Canal de Retorno / Correo electrónico", type: "input", icon: "📧" },
+                { id: "msg", label: "Cuerpo de Reporte / Mensaje", type: "textarea", icon: "📝" },
               ].map((field) => (
                 <div key={field.id}>
-                  <label
-                    className="block text-xs uppercase tracking-widest mb-2"
-                    style={{ color: c.textSecondary }}
-                  >
-                    {field.label}
+                  <label className="block font-mono text-[9px] tracking-widest text-slate-500 uppercase mb-2 font-bold">
+                    {field.icon} {field.label}
                   </label>
+                  
                   {field.type === "input" ? (
                     <input
                       name={field.id}
                       value={form[field.id as keyof typeof form]}
                       onChange={handle}
-                      className="w-full px-4 py-3 text-sm outline-none transition-all"
+                      className="w-full px-4 py-3.5 text-xs outline-none bg-zinc-950/70 border border-white/10 text-white font-mono tracking-wide transition-all focus:border-gta-cyan focus:shadow-[0_0_15px_rgba(0,240,255,0.15)]"
                       style={{
-                        backgroundColor: c.surface,
-                        border: `1px solid ${c.border}`,
-                        color: c.text,
-                        fontFamily: "'Oswald', sans-serif",
+                        fontFamily: "'Space Grotesk', sans-serif"
                       }}
-                      onFocus={(e) => (e.target.style.borderColor = c.primary)}
-                      onBlur={(e) => (e.target.style.borderColor = c.border)}
                     />
                   ) : (
                     <textarea
@@ -234,15 +213,10 @@ export default function ContactPage() {
                       value={form[field.id as keyof typeof form]}
                       onChange={handle}
                       rows={5}
-                      className="w-full px-4 py-3 text-sm outline-none resize-none transition-all"
+                      className="w-full px-4 py-3.5 text-xs outline-none bg-zinc-950/70 border border-white/10 text-white font-mono tracking-wide transition-all resize-none focus:border-gta-cyan focus:shadow-[0_0_15px_rgba(0,240,255,0.15)]"
                       style={{
-                        backgroundColor: c.surface,
-                        border: `1px solid ${c.border}`,
-                        color: c.text,
-                        fontFamily: "'Source Serif 4', serif",
+                        fontFamily: "'Source Serif 4', serif"
                       }}
-                      onFocus={(e) => (e.target.style.borderColor = c.primary)}
-                      onBlur={(e) => (e.target.style.borderColor = c.border)}
                     />
                   )}
                 </div>
@@ -250,15 +224,10 @@ export default function ContactPage() {
 
               <button
                 onClick={submit}
-                className="w-full py-4 font-bold uppercase tracking-widest text-sm flex items-center justify-center gap-3 transition-all duration-200 hover:scale-[1.01] active:scale-[0.99]"
-                style={{
-                  backgroundColor: c.primary,
-                  color: "#fff",
-                  letterSpacing: "0.2em",
-                }}
+                className="w-full py-4.5 font-display font-black text-xs uppercase tracking-[0.25em] bg-gta-pink text-white hover:scale-105 active:scale-95 transition-all duration-200 cursor-pointer shadow-lg shadow-gta-pink/20 hover:shadow-gta-pink/35 border border-gta-pink flex items-center justify-center gap-3 relative overflow-hidden"
               >
-                <Send size={16} />
-                Enviar mensaje
+                <Send size={15} />
+                INICIAR TRANSMISIÓN SATECO
               </button>
             </div>
           )}

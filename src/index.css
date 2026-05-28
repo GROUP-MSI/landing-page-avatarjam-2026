@@ -1,1 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Oswald:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700;800&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300&display=swap');
+
 @import "tailwindcss";
+
+@theme {
+  --color-gta-bg: #030306;
+  --color-gta-dark: #0a0a0f;
+  --color-gta-pink: #ff2a85;
+  --color-gta-orange: #ff6b00;
+  --color-gta-cyan: #00f0ff;
+  --color-gta-yellow: #facc15;
+  
+  --font-display: "Space Grotesk", "Oswald", sans-serif;
+  --font-sans: "Plus Jakarta Sans", sans-serif;
+  --font-serif: "Source Serif 4", serif;
+}
+
+/* Custom background neon orb animations */
+@keyframes neon-pulse-pink {
+  0%, 100% { transform: scale(1) translate(0px, 0px); opacity: 0.2; }
+  50% { transform: scale(1.2) translate(30px, -20px); opacity: 0.35; }
+}
+
+@keyframes neon-pulse-cyan {
+  0%, 100% { transform: scale(1.1) translate(0px, 0px); opacity: 0.2; }
+  50% { transform: scale(0.9) translate(-40px, 30px); opacity: 0.3; }
+}
+
+.animate-neon-pink {
+  animation: neon-pulse-pink 15s ease-in-out infinite;
+}
+
+.animate-neon-cyan {
+  animation: neon-pulse-cyan 18s ease-in-out infinite;
+}
+
+.gta-grid-bg {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+}
+
+.gta-scanlines {
+  position: relative;
+}
+.gta-scanlines::after {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+  z-index: 2;
+  background-size: 100% 4px, 6px 100%;
+  pointer-events: none;
+  opacity: 0.15;
+}
+
+.danger-stripes {
+  background: repeating-linear-gradient(
+    45deg,
+    rgba(0, 0, 0, 0.9),
+    rgba(0, 0, 0, 0.9) 10px,
+    rgba(250, 204, 21, 0.9) 10px,
+    rgba(250, 204, 21, 0.9) 20px
+  );
+}
+
+.danger-stripes-dark {
+  background: repeating-linear-gradient(
+    45deg,
+    #18181b,
+    #18181b 10px,
+    #f43f5e 10px,
+    #f43f5e 20px
+  );
+}
+
+.gta-text-glow-pink {
+  text-shadow: 0 0 10px rgba(255, 42, 133, 0.4), 0 0 20px rgba(255, 42, 133, 0.2);
+}
+
+.gta-text-glow-cyan {
+  text-shadow: 0 0 10px rgba(0, 240, 255, 0.4), 0 0 20px rgba(0, 240, 255, 0.2);
+}
+
+.gta-card-skew {
+  transform: skewX(-4deg);
+}
+
+.gta-card-skew-inner {
+  transform: skewX(4deg);
+}

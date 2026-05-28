@@ -67,26 +67,44 @@ export const AsaLoading = () => {
   // Using CSS animation for the logo scale
   return (
     <div
-      className="flex items-center justify-center h-screen w-screen"
+      className="flex flex-col items-center justify-center h-screen w-screen relative overflow-hidden gta-scanlines"
       style={{ background: colors.background }}
     >
-      <div className="relative flex items-center justify-center">
+      {/* Background glowing orb */}
+      <div 
+        className="absolute w-[350px] h-[350px] rounded-full blur-[100px] opacity-20 animate-pulse pointer-events-none"
+        style={{ backgroundColor: colors.primary }}
+      />
+      
+      <div className="relative flex items-center justify-center mb-8">
         {/* Spinning arc canvas */}
-        <canvas ref={canvasRef} width={300} height={300} className="absolute" />
+        <canvas ref={canvasRef} width={280} height={280} className="absolute" />
 
-        {/* Logo with pulse animation */}
-        <img
-          src={logo}
-          alt="The msi logo"
-          className="relative z-10 whatelbot-logo-pulse"
-          style={{ width: 80, height: 80, objectFit: "contain" }}
-        />
+        {/* Logo with pulse animation and drop shadow */}
+        <div className="relative z-10 p-4 bg-zinc-950/40 backdrop-blur-sm border border-white/5 rounded-full">
+          <img
+            src={logo}
+            alt="The msi logo"
+            className="whatelbot-logo-pulse"
+            style={{ width: 70, height: 70, objectFit: "contain" }}
+          />
+        </div>
+      </div>
+
+      {/* Military Cyber loading label */}
+      <div className="text-center relative z-10 flex flex-col items-center">
+        <span className="font-display font-black text-xs tracking-[0.3em] uppercase text-gta-pink animate-pulse">
+          INICIALIZANDO TERMINAL
+        </span>
+        <span className="font-mono text-[10px] tracking-[0.15em] text-white/40 uppercase mt-2">
+          f(x) = argmax E[R | pi] // SISTEMA ACTIVO
+        </span>
       </div>
 
       <style>{`
         @keyframes whatelbot-pulse {
-          0%, 100% { transform: scale(0.7); }
-          50% { transform: scale(1.0); }
+          0%, 100% { transform: scale(0.85); filter: drop-shadow(0 0 5px rgba(255, 42, 133, 0.2)); }
+          50% { transform: scale(1.0); filter: drop-shadow(0 0 15px rgba(255, 42, 133, 0.4)); }
         }
         .whatelbot-logo-pulse {
           animation: whatelbot-pulse 2s ease-in-out infinite;

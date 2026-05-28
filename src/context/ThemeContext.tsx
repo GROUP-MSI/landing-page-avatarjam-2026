@@ -18,24 +18,24 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export const themes = {
   "light": {
-    primary: "#dc2626", // rojo principal
-    secondary: "#b91c1c", // rojo oscuro
-    accent: "#ef4444", // rojo claro
-    background: "#ffffff", // blanco
-    surface: "#f9fafb", // gris muy claro
-    text: "#000000", // negro
-    textSecondary: "#374151", // gris oscuro
-    border: "#e5e7eb", // gris claro
+    primary: "#ff2a85", // rosa neón principal
+    secondary: "#ff6b00", // naranja sunset
+    accent: "#00f0ff", // cian brillante
+    background: "#f8fafc", // pizarra muy claro
+    surface: "#ffffff", // blanco puro
+    text: "#0f172a", // pizarra oscuro
+    textSecondary: "#475569", // pizarra medio
+    border: "#cbd5e1", // pizarra claro
   },
   "dark": {
-    primary: "#dc2626", // rojo principal
-    secondary: "#ef4444", // rojo claro
-    accent: "#f87171", // rojo brillante
-    background: "#000000", // negro
-    surface: "#111111", // negro ligeramente más claro
+    primary: "#ff2a85", // rosa neón principal
+    secondary: "#ff6b00", // naranja sunset
+    accent: "#00f0ff", // cian brillante
+    background: "#030306", // negro obsidiana
+    surface: "#0d0d14", // pizarra oscuro/slate de juego
     text: "#ffffff", // blanco
-    textSecondary: "#d1d5db", // gris claro
-    border: "#374151", // gris oscuro
+    textSecondary: "#94a3b8", // gris pizarra claro
+    border: "#1f1f2e", // borde pizarra oscuro
   },
 };
 
