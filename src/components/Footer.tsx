@@ -39,7 +39,7 @@ export default function Footer() {
 
   return (
     <footer
-      className="w-full transition-all duration-300"
+      className="w-full transition-all duration-300 font-sans"
       style={{
         backgroundColor: currentTheme.surface,
         borderTop: `1px solid ${currentTheme.border}`,
@@ -50,25 +50,30 @@ export default function Footer() {
       <div className="mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12">
           {/* Brand Column - spans 2 columns on large screens */}
-          <div className="lg:col-span-2 space-y-4">
-            <div className="flex items-center space-x-3">
+          <div className="lg:col-span-2 space-y-5">
+            <div className="flex items-center space-x-3 cursor-pointer" onClick={() => navigate("/")}>
               <div className="relative">
                 <img
                   src={logo}
-                  alt="The Msi Logo"
+                  alt="THE MSI VIP Logo"
                   className="h-12 w-auto object-contain relative z-10"
                 />
                 <div
-                  className="absolute inset-0 blur-lg opacity-30"
+                  className="absolute inset-0 blur-lg opacity-40"
                   style={{ backgroundColor: currentTheme.primary }}
                 />
               </div>
-              <span
-                className="text-xl font-bold"
-                style={{ color: currentTheme.primary }}
-              >
-                The Msi
-              </span>
+              <div className="flex flex-col">
+                <span
+                  className="font-display font-black text-lg tracking-wider uppercase leading-none"
+                  style={{ color: currentTheme.text }}
+                >
+                  THE <span style={{ color: currentTheme.primary }}>MSI VIP</span>
+                </span>
+                <span className="text-[10px] text-gta-pink tracking-[0.25em] font-bold uppercase leading-none mt-1">
+                  CRISIS ESTADO
+                </span>
+              </div>
             </div>
 
             <p
@@ -80,16 +85,16 @@ export default function Footer() {
               servicio de tu empresa.
             </p>
 
-            {/* Math Formula Badge */}
+            {/* Math Formula Badge - Hologram glow */}
             <div
-              className="inline-flex items-center gap-2 px-3 py-2 rounded-lg font-mono text-xs transition-all duration-300 hover:scale-105"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-none font-mono text-xs transition-all duration-300 hover:scale-105 border border-white/5 shadow-lg shadow-black/50 hover:shadow-[0_0_15px_rgba(0,240,255,0.2)]"
               style={{
                 backgroundColor: currentTheme.background,
-                borderLeft: `3px solid ${currentTheme.primary}`,
-                color: currentTheme.primary,
+                borderLeft: `3px solid ${currentTheme.accent}`,
+                color: currentTheme.accent,
               }}
             >
-              <span className="font-bold">ƒ(x)</span>
+              <span className="font-bold gta-text-glow-cyan animate-pulse">ƒ(x)</span>
               <span>= argmax</span>
               <sub>θ</sub>
               <span>𝔼[R | π</span>
@@ -102,7 +107,7 @@ export default function Footer() {
           {footerSections.map((section) => (
             <div key={section.title}>
               <h3
-                className="text-lg font-semibold mb-4 pb-2 border-b inline-block"
+                className="font-display font-bold uppercase tracking-widest text-xs mb-5 pb-2 border-b inline-block"
                 style={{
                   color: currentTheme.text,
                   borderBottomColor: currentTheme.primary,
@@ -110,20 +115,21 @@ export default function Footer() {
               >
                 {section.title}
               </h3>
-              <ul className="space-y-2">
+              <ul className="space-y-3">
                 {section.links.map((link) => (
                   <li key={link.name}>
                     <button
                       onClick={() => navigate(link.path)}
-                      className="group flex items-center gap-2 text-sm transition-all duration-200"
+                      className="group flex items-center gap-2 text-sm transition-all duration-200 cursor-pointer"
                       style={{ color: currentTheme.textSecondary }}
                     >
                       <ChevronRight
-                        size={14}
+                        size={12}
                         className="transition-transform duration-200 group-hover:translate-x-1"
                         style={{ color: currentTheme.primary }}
                       />
                       <span
+                        className="font-display font-bold uppercase tracking-widest text-[10px]"
                         onMouseEnter={(e) => {
                           e.currentTarget.style.color = currentTheme.primary;
                         }}
@@ -182,7 +188,7 @@ export default function Footer() {
             className="text-xs"
             style={{ color: currentTheme.textSecondary }}
           >
-            © {year} The Msi. Todos los derechos reservados.
+            © {year} THE MSI VIP. Todos los derechos reservados.
           </span>
 
           <div className="flex gap-6">
