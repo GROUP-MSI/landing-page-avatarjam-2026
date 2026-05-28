@@ -1,5 +1,5 @@
 import { useTheme, themes } from "../context/ThemeContext";
-import { Users, Globe, Shield, Calendar, Award, FileText } from "lucide-react";
+import { Users, Globe, Calendar, Award, FileText } from "lucide-react";
 import { GiMiner, GiRevolver } from "react-icons/gi";
 import { FaPersonMilitaryToPerson } from "react-icons/fa6";
 import { RiGovernmentLine } from "react-icons/ri";

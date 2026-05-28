@@ -7,7 +7,6 @@ import {
   TrendingUp,
   ChevronRight,
   HelpCircle,
-  AlertTriangle,
 } from "lucide-react";
 import { GiMiner, GiRevolver } from "react-icons/gi";
 import { FaPersonMilitaryToPerson } from "react-icons/fa6";

@@ -1,5 +1,5 @@
 import { useTheme, themes } from "../context/ThemeContext";
-import { Mail, Phone, MapPin, Send, MessageSquare, ShieldAlert } from "lucide-react";
+import { Mail, Phone, MapPin, Send, ShieldAlert } from "lucide-react";
 import { useState } from "react";
 import { motion } from "framer-motion";
 
