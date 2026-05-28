@@ -55,7 +55,7 @@ export default function Footer() {
               <div className="relative">
                 <img
                   src={logo}
-                  alt="The Msi Logo"
+                  alt="THE MSI VIP Logo"
                   className="h-12 w-auto object-contain relative z-10"
                 />
                 <div
@@ -67,7 +67,7 @@ export default function Footer() {
                 className="text-xl font-bold"
                 style={{ color: currentTheme.primary }}
               >
-                The Msi
+                THE MSI VIP
               </span>
             </div>
 
@@ -182,7 +182,7 @@ export default function Footer() {
             className="text-xs"
             style={{ color: currentTheme.textSecondary }}
           >
-            © {year} The Msi. Todos los derechos reservados.
+            © {year} THE MSI VIP. Todos los derechos reservados.
           </span>
 
           <div className="flex gap-6">

@@ -5,12 +5,12 @@ import logo from "../assets/logo.png";
 import { useNavigate } from "react-router-dom";
 
 const menuItems = [
-  { name: "Inicio", href: "/home" },
-  { name: "Nosotros", href: "/home/about" },
-  { name: "Planes", href: "/home/plans" },
-  { name: "Tutorial", href: "/home/tutorial" },
-  { name: "Blog", href: "/home/blog" },
-  { name: "Contactanos", href: "/home/contact" },
+  { name: "Inicio", href: "/" },
+  { name: "Nosotros", href: "/about" },
+  { name: "Planes", href: "/plans" },
+  { name: "Tutorial", href: "/tutorial" },
+  { name: "Blog", href: "/blog" },
+  { name: "Contactanos", href: "/contact" },
 ];
 
 const themeOptions: { name: string; value: Theme; icon: string }[] = [
@@ -56,7 +56,7 @@ export const NavbarHome = () => {
           >
             <img src={logo} alt="Logo" className="h-10 w-auto object-contain" />
             <p>
-              <b>The Msi</b>
+              <b>THE MSI VIP</b>
             </p>
           </div>
 
